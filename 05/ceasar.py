@@ -1,14 +1,14 @@
-plaintext = str(input("Zadejte slovo, které má být zašifrováno:"))
-key = int(input("Zadejte šifrovací klíč:"))
+plaintext = str(input("Zadejte prosím slovo, které má být zašifrováno:"))
+key_cipher = int(input("Zadejte prosím šifrovací klíč:"))
 ciphertext = " "
 
-for pismeno in plaintext:#používám cyklus pro každé písmeno v plaintext, mezi velkými a malými písmeny v ASCII jsou další znaky, které v 
-                            #sifre nechcu
+for pismeno in plaintext:#používám cyklus pro každé písmeno v plaintext, mezi velkými a malými písmeny v ASCII jsou další znaky, které 
+                            #v sifre nechcu
         if pismeno.isupper():
             pismeno_unicode = ord (pismeno) #převede na cislo v ASCII, velká písmena jsou 65 - 90
             znak_poradi = ord (pismeno) - ord ("A") #určí pořadí znaku od začátku abecedy
                                                 #nastavení ord(A) mi zajistí šifrování opět do velkých písmen (napravo od 65)
-            poradi_sifra = (znak_poradi + key) % 26 #nova pozice znaku v sifrovanem textu, posunuto o zadaný klíč, modulo mi zajišťuje šifrování
+            poradi_sifra = (znak_poradi + key_cipher) % 26 #nova pozice znaku v sifrovanem textu, posunuto o zadaný klíč, modulo mi zajišťuje šifrování
                                                 #čísel v rozsahu 0 - 25 (anglická abeceda),pro velká písmena tedy 65 - 90
                                                 # po dosáhnutí Z, začíná znovu od A
         
@@ -19,7 +19,7 @@ for pismeno in plaintext:#používám cyklus pro každé písmeno v plaintext, m
         elif pismeno.islower():
             pismeno_unicode = ord (pismeno) #převede na cislo v ASCII, malá písmena 97 - 122
             znak_poradi = ord (pismeno) - ord ("a") 
-            poradi_sifra = (znak_poradi + key) % 26 
+            poradi_sifra = (znak_poradi + key_cipher) % 26 
             sifra_unicode = poradi_sifra + ord("a") 
             sifra_pismeno = chr(sifra_unicode)
             ciphertext = ciphertext + sifra_pismeno
